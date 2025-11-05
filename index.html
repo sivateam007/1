@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jassif Team - HTML Fundamentals</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5f1a 0%, #2d8c2d 100%);
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .institution-name h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .institution-name p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+            color: #e8f5e9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 95, 26, 0.85), rgba(45, 140, 45, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%232d8c2d"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23ffffff" text-anchor="middle">HTML & CSS Learning</text></svg>') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            opacity: 0.95;
+        }
+        
+        /* Start Learning Button */
+        .start-learning-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .start-learning-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #2d8c2d 0%, #3ca33c 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 22px;
+            box-shadow: 0 8px 20px rgba(45, 140, 45, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 20px rgba(45, 140, 45, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 25px rgba(45, 140, 45, 0.5);
+            }
+            100% {
+                box-shadow: 0 8px 20px rgba(45, 140, 45, 0.3);
+            }
+        }
+        
+        .start-learning-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .start-learning-btn:hover::before {
+            left: 100%;
+        }
+        
+        .start-learning-btn:hover {
+            background: linear-gradient(135deg, #3ca33c 0%, #4db84d 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(45, 140, 45, 0.4);
+            animation: none;
+        }
+        
+        .start-learning-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .btn-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .start-learning-btn:hover .btn-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .btn-text {
+            font-size: 24px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a5f1a;
+            font-size: 36px;
+            position: relative;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #2d8c2d;
+            margin: 15px auto;
+            border-radius: 2px;
+            transform: scaleX(0);
+            animation: scaleIn 0.5s ease-out 0.8s forwards;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 35px 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            text-align: center;
+            border-top: 5px solid #2d8c2d;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .feature-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .feature-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .feature-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            color: #2d8c2d;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #1a5f1a;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        
+        /* Courses Section */
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .course-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .course-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .course-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .course-header {
+            background: #1a5f1a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        
+        .course-card:hover .course-header {
+            background: #2d8c2d;
+        }
+        
+        .course-header h3 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-content h4 {
+            margin-bottom: 15px;
+            color: #1a5f1a;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .course-duration {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* HTML & CSS Basics */
+        .basics {
+            background: #e8f5e9;
+            padding: 70px 0;
+            margin: 70px 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        
+        .basics-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .basics-text {
+            padding-right: 20px;
+        }
+        
+        .basics-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a5f1a;
+            font-weight: 600;
+        }
+        
+        .basics-text p {
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+        
+        .basics-examples {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .basics-examples:hover {
+            transform: translateY(-5px);
+        }
+        
+        .example-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #1a5f1a;
+            font-weight: 600;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .code-example:hover {
+            transform: scale(1.01);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 70px 0;
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-left: 5px solid #2d8c2d;
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .testimonial-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .testimonial-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .testimonial-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #2d8c2d;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .testimonial-card:hover .author-avatar {
+            transform: scale(1.1);
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #1a5f1a;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a5f1a;
+            color: white;
+            padding: 70px 0 25px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #4db84d;
+            font-weight: 600;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #4db84d;
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .footer-column:hover h3::after {
+            transform: scaleX(1);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #e8f5e9;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4db84d;
+            padding-left: 5px;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: #4db84d;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 15px;
+            opacity: 0.8;
+        }
+        
+        /* Contact Info Styles */
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .institution-name {
+                margin-bottom: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .start-learning-btn {
+                padding: 15px 30px;
+                font-size: 20px;
+            }
+            
+            .btn-text {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="institution-name">
+                    <h1>Jassif Team Educational Institution</h1>
+                    <p>Learn HTML & CSS in Tamil</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">முகப்பு</a></li>
+                        <li><a href="#courses">பாடப்பிரிவுகள்</a></li>
+                        <li><a href="#basics">HTML & CSS அடிப்படைகள்</a></li>
+                        <li><a href="#testimonials">மாணவர் கருத்துகள்</a></li>
+                        <li><a href="#contact">தொடர்பு கொள்ள</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>வலைத்தள வடிவமைப்பை தாய்மொழியில் கற்க வரவேற்கிறோம்</h2>
+            <p>Welcome to Learn HTML & CSS Website Designing in Mother Tongue Tamil</p>
+            <div class="start-learning-container">
+                <a href="html-fundamentals.html" class="start-learning-btn">
+                    <span class="btn-icon">📚</span>
+                    <span class="btn-text">Start Learning HTML Fundamentals</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Features Section -->
+            <section id="about">
+                <h2 class="section-title">ஏன் தமிழில் HTML & CSS கற்றுக்கொள்ள வேண்டும்?</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>தமிழில் முழுமையான பாடத்திட்டம்</h3>
+                        <p>HTML & CSS மொழிகளை முழுமையாக தமிழில் கற்றுக்கொள்ளுங்கள். தொடக்கநிலை முதல் மேம்பட்ட நிலை வரை.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h3>அனுபவம் வாய்ந்த பயிற்சியாளர்கள்</h3>
+                        <p>தொழில்முறை வலைத்தள வடிவமைப்பாளர்கள் மூலம் நடைமுறை அனுபவங்களைப் பகிர்ந்துகொள்ளப்படுகிறது.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>நடைமுறை திட்டங்கள்</h3>
+                        <p>கற்பித்தலுடன் இணைந்து நடைமுறை திட்டங்கள் மூலம் உங்கள் திறமைகளை மேம்படுத்துங்கள்.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Courses Section -->
+            <section id="courses">
+                <h2 class="section-title">HTML & CSS பாடப்பிரிவுகள்</h2>
+                <div class="courses">
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>HTML Fundamentals</h3>
+                        </div>
+                        <div class="course-content">
+                            <h4>HTML அடிப்படைகள்</h4>
+                            <p>HTML கட்டமைப்பு, உறுப்புகள், குறிச்சொற்கள், பண்புக்கூறுகள் மற்றும் வலைத்தள அடிப்படைகளை தமிழில் கற்கவும்.</p>
+                            <div class="course-duration">
+                                <span>காலம்: 4 வாரங்கள்</span>
+                                <span>நிலை: தொடக்கநிலை</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>CSS Styling</h3>
+                        </div>
+                        <div class="course-content">
+                            <h4>CSS ஸ்டைலிங்</h4>
+                            <p>CSS மூலம் வலைத்தளங்களை அலங்கரிக்கும் முறைகள், நிறங்கள், அளவுகள், இடங்கள் மற்றும் அசைவுகள்.</p>
+                            <div class="course-duration">
+                                <span>காலம்: 5 வாரங்கள்</span>
+                                <span>நிலை: தொடக்கநிலை</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>Layout & Design</h3>
+                        </div>
+                        <div class="course-content">
+                            <h4>வலைத்தள அமைப்பு மற்றும் வடிவமைப்பு</h4>
+                            <p>Flexbox, Grid மற்றும் Responsive Design மூலம் நவீன வலைத்தள அமைப்புகளை உருவாக்குதல்.</p>
+                            <div class="course-duration">
+                                <span>காலம்: 6 வாரங்கள்</span>
+                                <span>நிலை: இடைநிலை</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HTML & CSS Basics Section -->
+            <section class="basics" id="basics">
+                <div class="container">
+                    <h2 class="section-title">HTML & CSS அடிப்படைகள்</h2>
+                    <div class="basics-content">
+                        <div class="basics-text">
+                            <h3>வலைத்தள வடிவமைப்பின் அடிப்படை</h3>
+                            <p>HTML (HyperText Markup Language) மற்றும் CSS (Cascading Style Sheets) ஆகியவை வலைத்தளங்களை உருவாக்கும் அடிப்படை தொழில்நுட்பங்கள் ஆகும்.</p>
+                            <p>HTML வலைத்தளத்தின் கட்டமைப்பை வரையறுக்கிறது, CSS அதன் தோற்றத்தை வடிவமைக்கிறது.</p>
+                            <p>இந்த இரண்டு மொழிகளையும் கற்றுக்கொள்வது வலைத்தள வடிவமைப்புக்கான முதல் படியாகும்.</p>
+                        </div>
+                        <div class="basics-examples">
+                            <div class="example-title">HTML உதாரணம்:</div>
+                            <div class="code-example">
+                                &lt;!DOCTYPE html&gt;<br>
+                                &lt;html&gt;<br>
+                                &lt;head&gt;<br>
+                                &nbsp;&nbsp;&lt;title&gt;எனது வலைத்தளம்&lt;/title&gt;<br>
+                                &lt;/head&gt;<br>
+                                &lt;body&gt;<br>
+                                &nbsp;&nbsp;&lt;h1&gt;வணக்கம்!&lt;/h1&gt;<br>
+                                &nbsp;&nbsp;&lt;p&gt;இது எனது முதல் வலைப்பக்கம்.&lt;/p&gt;<br>
+                                &lt;/body&gt;<br>
+                                &lt;/html&gt;
+                            </div>
+                            <div class="example-title">CSS உதாரணம்:</div>
+                            <div class="code-example">
+                                body {<br>
+                                &nbsp;&nbsp;font-family: Arial, sans-serif;<br>
+                                &nbsp;&nbsp;background-color: #f0f0f0;<br>
+                                }<br>
+                                h1 {<br>
+                                &nbsp;&nbsp;color: #2d8c2d;<br>
+                                &nbsp;&nbsp;text-align: center;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials" id="testimonials">
+                <h2 class="section-title">மாணவர்களின் கருத்துகள்</h2>
+                <div class="testimonial-cards">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"தமிழில் HTML & CSS கற்றுக்கொள்வது மிகவும் எளிதாக இருந்தது. பயிற்சியாளர்களின் விளக்கம் மிகவும் தெளிவாக இருந்தது. இப்போது நான் என் சொந்த வலைத்தளங்களை உருவாக்க முடிகிறது."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">ர</div>
+                            <div class="author-info">
+                                <h4>ரமேஷ் குமார்</h4>
+                                <p>வலைத்தள வடிவமைப்பாளர்</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"தாய்மொழியில் கற்பது கருத்துகளை விரைவாக புரிந்துகொள்ள உதவியது. HTML & CSS பாடத்திட்டம் தொடக்கநிலை மாணவர்களுக்கு மிகவும் பொருத்தமானது. நடைமுறை பயிற்சிகள் மிகவும் பயனுள்ளதாக இருந்தன."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">ப</div>
+                            <div class="author-info">
+                                <h4>பிரியங்கா</h4>
+                                <p>மாணவர்</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"தமிழில் HTML & CSS தொழில்நுட்பங்களை கற்கும் வாய்ப்பு கிடைத்ததால், நான் விரைவாக கற்றுக்கொள்ள முடிந்தது. நடைமுறை திட்டங்கள் மிகவும் பயனுள்ளதாக இருந்தன. இப்போது நான் freelance வலைத்தள projects எடுத்து செய்கிறேன்."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">க</div>
+                            <div class="author-info">
+                                <h4>கார்த்திக் பாண்டியன்</h4>
+                                <p>Freelance Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Jassif Team Educational Institution</h3>
+                    <p>தாய்மொழியில் கல்வியை எளிமையாக்கும் நமது நோக்கம். HTML & CSS தொழில்நுட்பங்களை தமிழில் கற்பிப்பதே எங்கள் குறிக்கோள்.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>விரைவு இணைப்புகள்</h3>
+                    <ul>
+                        <li><a href="#home">முகப்பு</a></li>
+                        <li><a href="#courses">பாடப்பிரிவுகள்</a></li>
+                        <li><a href="#basics">HTML & CSS அடிப்படைகள்</a></li>
+                        <li><a href="#testimonials">மாணவர் கருத்துகள்</a></li>
+                        <li><a href="#contact">தொடர்பு கொள்ள</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>தொடர்பு கொள்ள</h3>
+                    <ul>
+                        <li class="contact-info">
+                            <span class="contact-icon">📍</span>
+                            செங்கல்பட்டு, தமிழ்நாடு
+                        </li>
+                        <li class="contact-info">
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:+919342292283">+91 93422 92283</a>
+                        </li>
+                        <li class="contact-info">
+                            <span class="contact-icon">✉️</span>
+                            <a href="mailto:info@jassifteam.edu">info@jassifteam.edu</a>
+                        </li>
+                        <li class="contact-info">
+                            <span class="contact-icon">🌐</span>
+                            <a href="https://www.jassifteam.edu.in" target="_blank">www.jassifteam.edu.in</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>பின்தொடரவும்</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com" target="_blank" class="social-link" title="Facebook">
+                            <span>f</span>
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank" class="social-link" title="Twitter">
+                            <span>t</span>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" class="social-link" title="Instagram">
+                            <span>i</span>
+                        </a>
+                        <a href="https://www.youtube.com" target="_blank" class="social-link" title="YouTube">
+                            <span>y</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Jassif Team Educational Institution. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for the Start Learning button
+        document.addEventListener('DOMContentLoaded', function() {
+            const startLearningBtn = document.querySelector('.start-learning-btn');
+            
+            startLearningBtn.addEventListener('click', function(e) {
+                // If you want to add any animation or confirmation before redirecting
+                e.preventDefault();
+                
+                // Add a loading animation
+                this.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Loading...</span>';
+                this.style.animation = 'none';
+                
+                // Redirect to the next page after a short delay
+                setTimeout(() => {
+                    window.location.href = this.getAttribute('href');
+                }, 1000);
+            });
+            
+            // Add scroll animations for elements
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for scroll animations
+            document.querySelectorAll('.feature-card, .course-card, .testimonial-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
