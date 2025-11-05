@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML அடிப்படைகள் - Jassif Team</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5f1a 0%, #2d8c2d 100%);
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .institution-name h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .institution-name p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+            color: #e8f5e9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a5f1a;
+            font-size: 36px;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #2d8c2d;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .lesson-section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+        
+        .lesson-section:last-child {
+            border-bottom: none;
+        }
+        
+        .lesson-title {
+            color: #1a5f1a;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+        }
+        
+        .sub-title {
+            color: #2d8c2d;
+            margin: 25px 0 15px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .content-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .highlight-box {
+            background: #f1f8e9;
+            border-left: 5px solid #2d8c2d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 2px solid #1a5f1a;
+        }
+        
+        .example-output {
+            background: #f8f9fa;
+            border: 2px dashed #2d8c2d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        /* HTML Headings with Colors */
+        .heading-demo {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 2px solid #e8f5e9;
+        }
+        
+        .h1-demo {
+            color: #e74c3c;
+            font-size: 36px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .h2-demo {
+            color: #e67e22;
+            font-size: 30px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .h3-demo {
+            color: #f39c12;
+            font-size: 26px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .h4-demo {
+            color: #27ae60;
+            font-size: 22px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .h5-demo {
+            color: #2980b9;
+            font-size: 18px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .h6-demo {
+            color: #8e44ad;
+            font-size: 16px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e8f5e9;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #2d8c2d 0%, #3ca33c 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(45, 140, 45, 0.3);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #3ca33c 0%, #4db84d 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 140, 45, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a5f1a;
+            color: white;
+            padding: 50px 0 25px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #4db84d;
+            font-weight: 600;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #4db84d;
+            border-radius: 2px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #e8f5e9;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4db84d;
+            padding-left: 5px;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 15px;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .institution-name {
+                margin-bottom: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .lesson-content {
+                padding: 30px 20px;
+            }
+            
+            .lesson-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="institution-name">
+                    <h1>Jassif Team Educational Institution</h1>
+                    <p>Learn HTML & CSS in Tamil</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">முகப்பு</a></li>
+                        <li><a href="html-fundamentals.html" style="background: rgba(255,255,255,0.2);">HTML அடிப்படைகள்</a></li>
+                        <li><a href="css-basics.html">CSS அடிப்படைகள்</a></li>
+                        <li><a href="projects.html">திட்டங்கள்</a></li>
+                        <li><a href="contact.html">தொடர்பு கொள்ள</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="lesson-content">
+                <h1 class="section-title">HTML அடிப்படைகள்</h1>
+                
+                <!-- Lesson 1 -->
+                <div class="lesson-section">
+                    <h2 class="lesson-title">1. HTML என்றால் என்ன?</h2>
+                    <p class="content-text">HTML (HyperText Markup Language) என்பது வலைத்தளங்களை உருவாக்கப் பயன்படும் முதன்மை மொழியாகும். இது வலைத்தளத்தின் கட்டமைப்பை வரையறுக்கிறது.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>முக்கிய குறிப்பு:</strong> HTML ஒரு programming language அல்ல, இது Markup Language ஆகும். இது வலைத்தளத்தின் உள்ளடக்கத்தை கட்டமைக்க உதவுகிறது.
+                    </div>
+                    
+                    <h3 class="sub-title">HTML இன் அடிப்படை கட்டமைப்பு:</h3>
+                    <div class="code-example">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;எனது வலைத்தளம்&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;வணக்கம்!&lt;/h1&gt;
+    &lt;p&gt;இது எனது முதல் வலைப்பக்கம்.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </div>
+                
+                <!-- Lesson 2 -->
+                <div class="lesson-section">
+                    <h2 class="lesson-title">2. HTML குறிச்சொற்கள் (Tags)</h2>
+                    <p class="content-text">HTML குறிச்சொற்கள் உறுப்புகளை வரையறுக்கப் பயன்படுகின்றன. ஒவ்வொரு குறிச்சொல்லும் &lt; மற்றும் &gt; குறிகளுக்குள் அமைந்திருக்கும்.</p>
+                    
+                    <h3 class="sub-title">முக்கியமான HTML குறிச்சொற்கள்:</h3>
+                    <div class="code-example">
+&lt;h1&gt; - முதன்மை தலைப்பு<br>
+&lt;p&gt; - பத்தி<br>
+&lt;a&gt; - இணைப்பு<br>
+&lt;img&gt; - படம்<br>
+&lt;div&gt; - பிரிவு<br>
+&lt;span&gt; - சிறு பிரிவு<br>
+&lt;ul&gt; - வரிசையில்லா பட்டியல்<br>
+&lt;ol&gt; - வரிசைப்படுத்தப்பட்ட பட்டியல்<br>
+&lt;li&gt; - பட்டியல் உருப்படி
+                    </div>
+                </div>
+                
+                <!-- Lesson 3 -->
+                <div class="lesson-section">
+                    <h2 class="lesson-title">3. HTML தலைப்புகள் (Headings)</h2>
+                    <p class="content-text">HTML இல் h1 முதல் h6 வரை 6 வகையான தலைப்புகள் உள்ளன. h1 மிக முக்கியமான தலைப்பு, h6 குறைந்த முக்கியத்துவம் வாய்ந்த தலைப்பு.</p>
+                    
+                    <h3 class="sub-title">வெவ்வேறு வண்ணங்களில் தலைப்புகள்:</h3>
+                    <div class="heading-demo">
+                        <div class="h1-demo">இது H1 தலைப்பு - சிவப்பு நிறம்</div>
+                        <div class="h2-demo">இது H2 தலைப்பு - ஆரஞ்சு நிறம்</div>
+                        <div class="h3-demo">இது H3 தலைப்பு - மஞ்சள் நிறம்</div>
+                        <div class="h4-demo">இது H4 தலைப்பு - பச்சை நிறம்</div>
+                        <div class="h5-demo">இது H5 தலைப்பு - நீல நிறம்</div>
+                        <div class="h6-demo">இது H6 தலைப்பு - ஊதா நிறம்</div>
+                    </div>
+                    
+                    <div class="code-example">
+&lt;h1 style="color: #e74c3c;"&gt;இது H1 தலைப்பு - சிவப்பு நிறம்&lt;/h1&gt;
+&lt;h2 style="color: #e67e22;"&gt;இது H2 தலைப்பு - ஆரஞ்சு நிறம்&lt;/h2&gt;
+&lt;h3 style="color: #f39c12;"&gt;இது H3 தலைப்பு - மஞ்சள் நிறம்&lt;/h3&gt;
+&lt;h4 style="color: #27ae60;"&gt;இது H4 தலைப்பு - பச்சை நிறம்&lt;/h4&gt;
+&lt;h5 style="color: #2980b9;"&gt;இது H5 தலைப்பு - நீல நிறம்&lt;/h5&gt;
+&lt;h6 style="color: #8e44ad;"&gt;இது H6 தலைப்பு - ஊதா நிறம்&lt;/h6&gt;
+                    </div>
+                </div>
+                
+                <!-- Lesson 4 -->
+                <div class="lesson-section">
+                    <h2 class="lesson-title">4. HTML பண்புக்கூறுகள் (Attributes)</h2>
+                    <p class="content-text">பண்புக்கூறுகள் HTML உறுப்புகளுக்கு கூடுதல் தகவல்களை வழங்குகின்றன.</p>
+                    
+                    <h3 class="sub-title">பொதுவான பண்புக்கூறுகள்:</h3>
+                    <div class="code-example">
+&lt;a href="https://www.example.com"&gt;எடுத்துக்காட்டு இணையதளம்&lt;/a&gt;<br>
+&lt;img src="image.jpg" alt="விளக்கம்" width="500" height="300"&gt;<br>
+&lt;div class="container" id="main-content"&gt;உள்ளடக்கம்&lt;/div&gt;<br>
+&lt;p style="color: blue; font-size: 18px;"&gt;வண்ணமயமான பத்தி&lt;/p&gt;
+                    </div>
+                    
+                    <div class="example-output">
+                        <p style="color: blue; font-size: 18px;">வண்ணமயமான பத்தி - இந்த பத்தி நீல நிறத்தில் உள்ளது</p>
+                    </div>
+                </div>
+                
+                <!-- Lesson 5 -->
+                <div class="lesson-section">
+                    <h2 class="lesson-title">5. பட்டியல்கள் (Lists)</h2>
+                    <p class="content-text">HTML இல் இரண்டு வகையான பட்டியல்கள் உள்ளன: வரிசையில்லா பட்டியல் (Unordered List) மற்றும் வரிசைப்படுத்தப்பட்ட பட்டியல் (Ordered List).</p>
+                    
+                    <h3 class="sub-title">பட்டியல் உதாரணங்கள்:</h3>
+                    <div class="code-example">
+&lt;!-- வரிசையில்லா பட்டியல் --&gt;<br>
+&lt;ul&gt;<br>
+&nbsp;&nbsp;&lt;li&gt;காபி&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;li&gt;தேநீர்&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;li&gt;பால்&lt;/li&gt;<br>
+&lt;/ul&gt;<br><br>
+&lt;!-- வரிசைப்படுத்தப்பட்ட பட்டியல் --&gt;<br>
+&lt;ol&gt;<br>
+&nbsp;&nbsp;&lt;li&gt;முதல் படி&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;li&gt;இரண்டாம் படி&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;li&gt;மூன்றாம் படி&lt;/li&gt;<br>
+&lt;/ol&gt;
+                    </div>
+                    
+                    <div class="example-output">
+                        <h4 style="color: #2d8c2d;">வரிசையில்லா பட்டியல்:</h4>
+                        <ul style="color: #2d8c2d;">
+                            <li>காபி</li>
+                            <li>தேநீர்</li>
+                            <li>பால்</li>
+                        </ul>
+                        
+                        <h4 style="color: #2d8c2d;">வரிசைப்படுத்தப்பட்ட பட்டியல்:</h4>
+                        <ol style="color: #2d8c2d;">
+                            <li>முதல் படி</li>
+                            <li>இரண்டாம் படி</li>
+                            <li>மூன்றாம் படி</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="lesson-navigation">
+                    <a href="index.html" class="nav-btn">← முகப்புக்குத் திரும்பு</a>
+                    <a href="css-basics.html" class="nav-btn">CSS அடிப்படைகள் →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Jassif Team Educational Institution</h3>
+                    <p>தாய்மொழியில் கல்வியை எளிமையாக்கும் நமது நோக்கம். HTML & CSS தொழில்நுட்பங்களை தமிழில் கற்பிப்பதே எங்கள் குறிக்கோள்.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>விரைவு இணைப்புகள்</h3>
+                    <ul>
+                        <li><a href="index.html">முகப்பு</a></li>
+                        <li><a href="html-fundamentals.html">HTML அடிப்படைகள்</a></li>
+                        <li><a href="css-basics.html">CSS அடிப்படைகள்</a></li>
+                        <li><a href="projects.html">திட்டங்கள்</a></li>
+                        <li><a href="contact.html">தொடர்பு கொள்ள</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>தொடர்பு கொள்ள</h3>
+                    <ul>
+                        <li>📍 செங்கல்பட்டு, தமிழ்நாடு</li>
+                        <li>📞 +91 93422 92283</li>
+                        <li>✉️ info@jassifteam.edu</li>
+                        <li>🌐 www.jassifteam.edu.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Jassif Team Educational Institution. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
