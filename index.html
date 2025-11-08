@@ -290,6 +290,42 @@
             color: #6272a4;
         }
         
+        /* Next Page Navigation */
+        .next-page-nav {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .next-page-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .next-page-btn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .next-page-btn i {
+            font-size: 1.4rem;
+            transition: transform 0.3s;
+        }
+        
+        .next-page-btn:hover i {
+            transform: translateX(5px);
+        }
+        
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary), var(--dark));
@@ -362,6 +398,11 @@
             
             .content-section {
                 padding: 1.5rem;
+            }
+            
+            .next-page-btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -444,6 +485,14 @@
                 <pre>Hello John</pre>
             </div>
         </section>
+
+        <!-- Next Page Navigation -->
+        <div class="next-page-nav">
+            <a href="java-getting-started.html" class="next-page-btn">
+                <span>Next: Java Getting Started</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </main>
 
     <!-- Footer -->
