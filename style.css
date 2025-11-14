@@ -491,9 +491,9 @@ footer {
         padding: 1.5rem;
     }
 
-    /* Add padding to logo for mobile to prevent home button overlap */
+    /* Add padding to logo for mobile to prevent home icon overlap */
     .logo h1 {
-        padding-right: 80px;
+        padding-right: 60px;
         font-size: 1.4rem;
     }
 }
@@ -502,7 +502,7 @@ footer {
 @media (max-width: 480px) {
     .logo h1 {
         font-size: 1.2rem;
-        padding-right: 70px;
+        padding-right: 50px;
     }
     
     .hero h2 {
@@ -516,60 +516,60 @@ footer {
     }
 }
 
-/* Home Text Button Styles - Matches Your Design */
-.home-btn {
+/* Home Icon Styles - Clean and Simple */
+.home-icon {
     position: fixed;
     top: 20px;
     right: 20px;
-    padding: 10px 20px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(135deg, var(--git-color), #e74c3c);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    border: 2px solid white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 2px solid white;
     animation: pulse 2s infinite;
 }
 
-.home-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+.home-icon:hover {
     background: linear-gradient(135deg, #e74c3c, var(--git-color));
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     text-decoration: none;
     color: white;
 }
 
-.home-btn:active {
-    transform: translateY(0);
+.home-icon:active {
+    transform: scale(1.05);
 }
 
-/* Responsive Home Button */
+/* Responsive Home Icon */
 @media (max-width: 768px) {
-    .home-btn {
-        padding: 8px 16px;
-        font-size: 12px;
-        top: 10px;
-        right: 10px;
-        gap: 4px;
-        border-radius: 6px;
-        border-width: 1px;
+    .home-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        top: 15px;
+        right: 15px;
+        border-width: 1.5px;
     }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
-    .home-btn {
-        padding: 6px 12px;
-        font-size: 11px;
-        top: 8px;
-        right: 8px;
+    .home-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        top: 12px;
+        right: 12px;
+        border-width: 1px;
     }
 }
